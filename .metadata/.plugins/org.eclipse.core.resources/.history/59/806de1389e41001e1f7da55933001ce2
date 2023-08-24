@@ -1,0 +1,5 @@
+package requesttypes;
+
+public class PatchTest {
+
+}

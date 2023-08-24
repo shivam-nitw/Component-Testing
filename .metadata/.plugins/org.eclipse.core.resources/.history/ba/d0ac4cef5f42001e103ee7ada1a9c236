@@ -1,0 +1,29 @@
+package chaining;
+
+import static io.restassured.RestAssured.baseURI;
+import static io.restassured.RestAssured.given;
+
+import org.json.simple.JSONObject;
+
+import io.restassured.http.ContentType;
+
+public class GetUser {
+	public void getTestPost() {
+		
+		 baseURI = "https://reqres.in";
+		 JSONObject jo =new JSONObject();
+		 jo.put("name", "John");
+		 jo.put("job","Developer");
+		 System.out.println(jo.toJSONString());
+		 given()
+		 .accept("application/json")
+		 .contentType(ContentType.JSON)
+		 .body(jo.toJSONString())
+		 .when()
+		 .post("/api/users")
+		 .then()
+		 .statusCode(201)
+		 .log().all();
+		}
+
+}

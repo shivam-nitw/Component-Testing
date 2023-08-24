@@ -1,0 +1,36 @@
+package chaining;
+
+import static io.restassured.RestAssured.baseURI;
+import static io.restassured.RestAssured.given;
+
+import org.json.simple.JSONObject;
+import org.testng.annotations.Test;
+
+import io.restassured.http.ContentType;
+
+public class CreateUser {
+
+	
+	@Test
+	public void getTestDigestAuth() {
+		
+	 baseURI = "https://gorest.co.in/";
+	 JSONObject jo =new JSONObject();
+	 jo.put("name", "John");
+	 jo.put("job","Developer");
+	 System.out.println(jo.toJSONString());
+	 String bearertoken = "bc31eb35d10c69e889894c3559cd70bcd0e610325b4d8d11f490e861dfa042a2";
+	 given()
+	 .accept("application/json")
+	 .contentType(ContentType.JSON)
+	 .headers("Authorization","Bearer "+bearertoken)
+	 .body(jo.toJSONString())
+	 .when()
+	 .get("/public/v2/users")
+	 .then()
+	 .statusCode(200)
+	 .log().all();
+
+}
+
+}

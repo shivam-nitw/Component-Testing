@@ -1,0 +1,30 @@
+package chaining;
+
+import static io.restassured.RestAssured.baseURI;
+import static io.restassured.RestAssured.given;
+
+import org.json.simple.JSONObject;
+import org.testng.annotations.Test;
+
+import io.restassured.http.ContentType;
+
+public class UpdateUser {
+	@Test
+	public void getTestDigestAuth() {
+		
+	 baseURI = "https://gorest.co.in/";
+	 String token = "bc31eb35d10c69e889894c3559cd70bcd0e610325b4d8d11f490e861dfa042a2";
+	 given()
+	 .accept("application/json")
+	 .contentType(ContentType.JSON)
+	 .when()
+	 .get("/user/repos")
+	 .then()
+	 .statusCode(200)
+	 .log().all();
+
+}
+
+
+}
+

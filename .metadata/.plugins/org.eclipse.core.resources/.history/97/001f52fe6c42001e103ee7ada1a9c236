@@ -1,0 +1,43 @@
+package chaining;
+
+import static io.restassured.RestAssured.baseURI;
+import static io.restassured.RestAssured.given;
+
+import org.json.simple.JSONObject;
+import org.testng.ITestContext;
+import org.testng.annotations.Test;
+
+import com.github.javafaker.Faker;
+
+import io.restassured.http.ContentType;
+
+public class CreateUser {
+
+	
+	@Test
+	public void getTestDigestAuth(ITestContext context) {
+	 baseURI = "https://gorest.co.in/";
+	 JSONObject jo =new JSONObject();
+	 Faker faker = new Faker();
+	 jo.put("name", faker.name().fullName());
+	 jo.put("gender","Developer");
+	 jo.put("email",faker.internet().emailAddress());
+	 System.out.println(jo.toJSONString());
+	 String bearertoken = "bc31eb35d10c69e889894c3559cd70bcd0e610325b4d8d11f490e861dfa042a2";
+	 int id=given()
+	 .accept("application/json")
+	 .contentType(ContentType.JSON)
+	 .headers("Authorization","Bearer "+bearertoken)
+	 .body(jo.toJSONString())
+	 .when()
+	 .get("/public/v2/users")
+	 .then()
+	 .statusCode(200)
+	 .log()
+	 .all();
+	 .extract().jsonPath().getInt("id");
+
+
+}
+
+}

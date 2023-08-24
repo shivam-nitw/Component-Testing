@@ -1,0 +1,35 @@
+package requesttypes;
+
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+import io.restassured.RestAssured;
+import io.restassured.response.Response;
+import static io.restassured.RestAssured.*;
+import static org.hamcrest.Matchers.equalTo;
+
+public class GetTest {
+	@Test
+	public void getTest() {
+	 Response res = RestAssured.get("https://reqres.in/api/users?page=2");
+	 System.out.println(res.statusCode());
+	 Assert.assertEquals(res.statusCode(), 200);
+	}
+	
+	
+	@Test
+	public void getTestBDD() {
+		
+	 baseURI = "http://localhost:3001";
+	 given()
+	 .queryParam("page","2")
+	 .when()
+	 .get("/api/users")
+	 .then()
+	 .statusCode(200)
+	 .body("data[3].id",equalTo(10));
+	 //.log().all();
+	}
+	
+
+}

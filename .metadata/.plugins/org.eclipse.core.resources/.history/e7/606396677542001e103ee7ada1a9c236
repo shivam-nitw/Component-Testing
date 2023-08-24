@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Suite">
+<parameter name="appBaseURI" value="https://gorest.co.in"/>
+<parameter name="token" value="bc31eb35d10c69e889894c3559cd70bcd0e610325b4d8d11f490e861dfa042a2"/>
+  <test thread-count="5" name="TestNG">
+    <classes>
+      <class name="chaining.CreateUser"/>
+      <class name="chaining.GetUser"/>
+      <class name="chaining.UpdateUser"/>
+      <class name="chaining.DeleteUser"/>
+    </classes>
+  </test> <!-- TestNG -->
+</suite> <!-- Suite -->

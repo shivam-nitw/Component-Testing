@@ -1,0 +1,27 @@
+package chaining;
+
+import static io.restassured.RestAssured.baseURI;
+import static io.restassured.RestAssured.given;
+import org.testng.annotations.Test;
+
+
+
+public class GetUser {
+	@Test
+	public void getTestDigestAuth() {
+		
+	 baseURI = "https://gorest.co.in";
+	 String bearertoken = "bc31eb35d10c69e889894c3559cd70bcd0e610325b4d8d11f490e861dfa042a2";
+	 given()
+	 .contentType("application/json")
+	 .headers("Authorization","Bearer "+bearertoken)
+	 .when()
+	 .get("/public/v2/users/4689601")
+	 .then()
+	 .statusCode(200)
+	 .log().all();
+
+}
+
+
+}

@@ -1,0 +1,5 @@
+package auths;
+
+public class BasicAuth {
+
+}
